@@ -1,2 +1,13 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Upcoming events soorted by category</h1>
+
+<% @themes.each do |theme| %>
+  <div class="panel panel-primary">
+    <div class="panel-heading"><%= theme.name %></div>
+      <% theme.events.each do |event| %>
+        <div class="panel-body">
+          <h4><%= link_to event.name, event_path(event) %></h4>
+          <h4><%= event.starts_at %></h4>
+        </div>
+      <% end %>
+  </div>
+<% end %>

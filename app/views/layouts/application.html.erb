@@ -10,10 +10,20 @@
 
   <body>
     <%= render 'shared/navbar' %>
-  
-      <%= notice %>
-      <%= alert %>
 
+    <div class="container">
+      <% if notice.present? %>
+        <p class="alert alert-info" role="alert">
+          <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+          <%= notice %>
+        </p>
+      <% elsif alert.present? %>
+        <p class="alert alert-danger" role="alert">
+          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+          <span class="sr-only">Error:</span>
+          <%= alert %>
+        </p>
+      <% end %>
 
     <div class="container">
       <%= yield %>
