@@ -20,15 +20,15 @@
     <!-- Time -->
     <h4>Time</h4>
     <ul class="Time">
-      <li>Event starts at: <%= @event.starts_at %></li>
-      <li>Event ends at: <%= @event.ends_at %></li>
+      <li>Event starts at: <%= Time.at(@event.starts_at - 2.hour).strftime("%B %e, %Y at %I:%M %p") %></li>
+      <li>Event ends at: <%= Time.at(@event.ends_at - 2.hour).strftime("%B %e, %Y at %I:%M %p") %></li>
     </ul>
 
     <h4>Themes</h4>
     <% @themes.each do |theme| %>
       <span class="label label-success"><%= theme.name %></span>
     <% end %>
-    
+
   </div>
 </div>
 
