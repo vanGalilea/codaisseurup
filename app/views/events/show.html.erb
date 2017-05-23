@@ -24,8 +24,12 @@
       <li>Event ends at: <%= @event.ends_at %></li>
     </ul>
 
+    <h4>Themes</h4>
+    <% @themes.each do |theme| %>
+      <span class="label label-success"><%= theme.name %></span>
+    <% end %>
+    
   </div>
-
 </div>
 
 <%= link_to "Back", events_path, class: "btn btn-default" %>
