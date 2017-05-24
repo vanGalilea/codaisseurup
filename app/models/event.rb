@@ -4,7 +4,7 @@ class Event < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true, length: {maximum: 500}
-  validates :starts_at, :ends_at, presence: true
+  validates :starts_at, :ends_at, presence: false
 
   def bargain?
     price < 10

@@ -13,7 +13,7 @@
     <!-- Main Info -->
     <h4>Main Info</h4>
     <p>Price: <%= @event.price %></p>
-    <p><%= @event.capacity %> <%= @event.capacity > 1 ? "Guests" : "Guest" %></p>
+    <p><%= @event.capacity %> "Guests" %></p>
     <p> Event including food: <%= @event.includes_food == true ? "Yes" : "No" %></p>
     <p> Event including drinks: <%= @event.includes_drinks == true ? "Yes" : "No" %></p>
 
