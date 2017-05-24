@@ -22,4 +22,15 @@ describe "shared/_navbar.html.erb" do
       expect(rendered).to have_content profile.last_name
     end
   end
+
+end
+
+describe "shared/_navbar.html.erb" do
+  context "without user" do
+    it "renders log in and sign in without " do
+      render
+      expect(rendered).to have_content "Log-in"
+      expect(rendered).to have_content "Sign-up"
+    end
+  end
 end

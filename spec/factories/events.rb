@@ -7,8 +7,8 @@ FactoryGirl.define do
     includes_food     true
     includes_drinks   true
     capacity          50
-    starts_at         { rand(10.hours) + Time.now }
-    ends_at           { rand(10.hours) + Time.now }
+    starts_at         Time.now
+    ends_at           Time.now
     user              { build(:user) }
 
     trait :active do
