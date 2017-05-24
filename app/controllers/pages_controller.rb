@@ -3,4 +3,7 @@ class PagesController < ApplicationController
     @themes = Theme.all
   end
 
+  def about
+
+  end
 end

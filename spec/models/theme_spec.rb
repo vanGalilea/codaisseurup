@@ -6,4 +6,8 @@ RSpec.describe Theme, type: :model do
     it { is_expected.to validate_uniqueness_of(:name) }
   end
 
+  describe "association with event" do
+    it { should have_many(:events) }
+  end
+
 end

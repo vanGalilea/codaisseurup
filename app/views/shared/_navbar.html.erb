@@ -12,6 +12,8 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right">
 
+        <li><%= link_to "About", about_path %></li>
+        
         <% if !user_signed_in? %>
           <li><%= link_to " Log-in", new_user_session_path, class: "glyphicon glyphicon-log-in" %></li>
           <li><%= link_to " Sign-up", new_user_registration_path, class: "glyphicon glyphicon-pencil" %></li>
