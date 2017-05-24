@@ -1,5 +1,6 @@
 Theme.destroy_all
 User.destroy_all
+Event.destroy_all
 
 steve = User.create!(email: "z.galili@icloud.com", password: "abc123")
 sem = User.create!(email: "sem@icloud.com", password: "abc123")
