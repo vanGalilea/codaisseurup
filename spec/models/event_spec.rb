@@ -9,6 +9,29 @@ RSpec.describe Event, type: :model do
     it { is_expected.to validate_length_of(:description).is_at_most(500) }
   end
 
+  describe "association with user" do
+  let(:user) { create :user }
+
+  it "belongs to a user" do
+    event = user.events.new
+    expect(event.user).to eq(user)
+  end
+end
+
+describe "association with theme" do
+  let(:event) { create :event }
+
+  let(:theme1) { create :theme, name: "Sport", events: [event] }
+  let(:theme2) { create :theme, name: "Baking", events: [event] }
+  let(:theme3) { create :theme, name: "Sailing", events: [event] }
+
+  it "has themes" do
+    expect(event.themes).to include(theme1)
+    expect(event.themes).to include(theme2)
+    expect(event.themes).to include(theme3)
+  end
+end
+
   describe "#bargain?" do
    let(:bargain_event) { create :event, price: 8 }
    let(:non_bargain_event) { create :event, price: 20 }
