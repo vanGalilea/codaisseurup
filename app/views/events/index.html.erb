@@ -7,9 +7,14 @@
       <div class="panel-body">
 
         <% @events.each do |event| %>
-        <div class="row">
-          <div class="col-md-7">
+        <div class="row form-group">
+          <div class="col-md-4">
             <h4><%= event.name %></h4>
+          </div>
+          <div class="col-md-3 ">
+          <% event.photos.each do |photo| %>
+            <%= image_tag photo.image.small_thumb %>
+          <% end %>
           </div>
           <div class="col-md-3 right">
             <%= link_to "View", event, class: "btn btn-default" %>

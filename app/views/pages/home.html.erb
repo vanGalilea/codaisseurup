@@ -1,4 +1,4 @@
-<h1>Upcoming events soorted by category</h1>
+  <h1>Upcoming events soorted by category</h1>
 <div class="container">
   <div class="row">
     <% @themes.each do |theme| %>
@@ -9,6 +9,9 @@
               <div class="panel-body">
                 <h4><%= link_to event.name, event_path(event) %></h4>
                 <h4><%= Time.at(event.starts_at).strftime("%B %e, %Y at %I:%M %p") %></h4>
+                <% event.photos.each do |photo| %>
+                  <%= image_tag photo.image.small_thumb %>
+                <% end %>
               </div>
             <% end %>
         </div>
