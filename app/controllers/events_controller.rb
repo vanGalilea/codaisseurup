@@ -58,7 +58,7 @@ class EventsController < ApplicationController
       :capacity, :includes_food, :includes_drinks,
       :starts_at, :ends_at, :active, theme_ids: [])
     end
-
+    
     def image_params
       params[:images].present? ? params.require(:images) : []
     end
