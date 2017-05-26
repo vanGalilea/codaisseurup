@@ -16,4 +16,14 @@ class Event < ApplicationRecord
   def self.order_by_price
     order(:price)
   end
+
+  def available?
+    total_guests = 0
+
+    registrations.each do |registration|
+      total_guests += registration.guests_count
+    end
+
+    capacity > total_guests
+  end
 end

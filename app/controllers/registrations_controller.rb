@@ -3,10 +3,12 @@ class RegistrationsController < ApplicationController
 
   def create
     @registration = current_user.registrations.new(registration_params.merge(event_id: params[:event_id]))
-    @registration.set_total_price
-    @registration.set_status
-    @registration.save
-    redirect_to @registration.event, notice: "Thank you for registering!"
+    if @registration.event.available?
+      @registration.save
+      redirect_to @registration.event, notice: "Thank you for registering!"
+    else
+      redirect_to @registration.event, notice: "Sorry! This event is full"
+    end
   end
 
   private
