@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   resources :themes
   resources :profiles, only: [:new, :edit, :create, :update]
   resources :users, only: [:show]
-  resources :events
+  resources :events do
+    resources :registrations, only: [:create]
+  end
+
   resources :photos
 
   get "about" => "pages#about"

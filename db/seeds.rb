@@ -3,6 +3,7 @@ Theme.destroy_all
 Event.destroy_all
 Profile.destroy_all
 User.destroy_all
+Registration.destroy_all
 
 steve = User.create!(email: "z.galili@icloud.com", password: "abc123")
 sem = User.create!(email: "sem@icloud.com", password: "abc123")
@@ -42,3 +43,6 @@ event1 = Event.create!(name: "Drone Flying Event", description:"In response to t
   expected to cap added sugars at 12 teaspoons (50 grams a day). The FDA is also redesigning food labels to clearly
   show how much sugar has been added to foods.", location: "Huis ter Heide valley", price: 9.99, capacity: 50, includes_food: true,
   includes_drinks: false, starts_at: Time.now, ends_at: Time.now, active: true, user: sem, themes: [women, cooking, baking], photos: [photo1, photo2])
+
+  Registration.create!(event: event3, user: steve, price: 5.5, status: "almost full")
+  Registration.create!(event: event2, user: sem, price: 5.4, status: "almost full")
