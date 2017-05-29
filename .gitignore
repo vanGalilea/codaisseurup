@@ -15,5 +15,5 @@
 
 /node_modules
 /yarn-error.log
-
+/config/initializers/cloudinary.rb
 .byebug_history
