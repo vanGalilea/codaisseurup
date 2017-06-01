@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     resources :registrations, only: [:create]
   end
 
+  namespace :api do
+    resources :events
+  end
+
   resources :photos
 
   get "about" => "pages#about"
