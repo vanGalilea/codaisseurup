@@ -11,17 +11,31 @@ class Event < ApplicationRecord
 
 
   scope :published, -> { where(active: true) }
+  scope :order_by_name, -> { order(name: :asc)}
+  scope :order_by_price, -> { order(price: :asc)}
 
-  def self.order_by_name
-    order(name: :asc)
+  scope :on_date, ->(date) {
+    where('? BETWEEN starts_at AND ends_at', date)
+  }
+
+  scope :starts_on, ->(start_date) {
+    where(starts_at: start_date)
+  }
+
+  scope :ends_on, ->(end_date) {
+    where('ends_at = ?', end_date)
+  }
+
+  def self.all_events_guests
+    group(:name).joins(:registrations).sum(:guest_count)
+  end
+
+  def guests_per_event
+    guests.count
   end
 
   def bargain?
     price < 10
-  end
-
-  def self.order_by_price
-    order(:price)
   end
 
   def available?

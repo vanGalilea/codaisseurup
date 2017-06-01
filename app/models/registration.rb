@@ -7,6 +7,19 @@ class Registration < ApplicationRecord
 
   validates :guests_count, presence: true
 
+
+  def self.count_by_status
+    group(:status).count
+  end
+
+  def self.earliest_reg
+    order(created_at: :desc).first
+  end
+
+  def self.order_by_created
+    order(:created_at)
+  end
+
   def set_status
     event.price > 0 ? self.status = "pending" : self.status = "confirmed"
   end

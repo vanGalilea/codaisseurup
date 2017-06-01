@@ -37,6 +37,28 @@ RSpec.describe Event, type: :model do
     end
   end
 
+  describe "date testing" do
+    let!(:event1) { create :event, starts_at:"2017-06-01", ends_at:"2017-06-11" }
+    let!(:event2) { create :event, starts_at:"2017-06-05", ends_at:"2017-06-21" }
+
+    describe ".on_date return events planned on that day" do
+      it { expect(Event.on_date(Date.parse("2017-06-02"))).to include(event1) }
+      it { expect(Event.on_date(Date.parse("2017-06-02"))).not_to include(event2) }
+    end
+
+    describe ".starts_on" do
+      it { expect(Event.starts_on(Date.parse("2017-06-01"))).to include(event1) }
+      it { expect(Event.starts_on(Date.parse("2017-06-05"))).to include(event2) }
+      it { expect(Event.starts_on(Date.parse("2017-06-07"))).not_to include(event2) }
+    end
+
+  #  describe ".ends_event" do
+  #       it "returns an array of events" do
+  #         expect(Event.ends_event(Time.now + 2.days)).to match_array [event1, event2]
+  #       end
+  #     end
+  end
+
   describe "#bargain?" do
    let(:bargain_event) { create :event, price: 8 }
    let(:non_bargain_event) { create :event, price: 20 }
