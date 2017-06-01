@@ -52,11 +52,11 @@ RSpec.describe Event, type: :model do
       it { expect(Event.starts_on(Date.parse("2017-06-07"))).not_to include(event2) }
     end
 
-  #  describe ".ends_event" do
-  #       it "returns an array of events" do
-  #         expect(Event.ends_event(Time.now + 2.days)).to match_array [event1, event2]
-  #       end
-  #     end
+   describe ".ends_on" do
+        it { expect(Event.ends_on(Date.parse("2017-06-11"))).to include(event1) }
+        it { expect(Event.ends_on(Date.parse("2017-06-11"))).not_to include(event2) }
+        it { expect(Event.ends_on(Date.parse("2017-06-21"))).to include(event2) }
+    end
   end
 
   describe "#bargain?" do
@@ -80,15 +80,14 @@ RSpec.describe Event, type: :model do
   end
 
   describe "association with registration" do
-  let(:guest_user) { create :user, email: "guest@user.com" }
-  let(:host_user) { create :user, email: "host@user.com" }
+    let(:guest_user) { create :user, email: "guest@user.com" }
+    let(:host_user) { create :user, email: "host@user.com" }
 
-  let!(:event) { create :event, user: host_user }
-  let!(:registration) { create :registration, event: event, user: guest_user }
+    let!(:event) { create :event, user: host_user }
+    let!(:registration) { create :registration, event: event, user: guest_user }
 
-  it "has guests" do
-    expect(event.guests).to include(guest_user)
+    it "has guests" do
+      expect(event.guests).to include(guest_user)
+    end
   end
-end
-
 end
