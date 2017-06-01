@@ -7,7 +7,14 @@ class Event < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true, length: {maximum: 500}
-  validates :starts_at, :ends_at, presence: false
+  validates :starts_at, :ends_at, presence: true
+
+
+  scope :published, -> { where(active: true) }
+
+  def self.order_by_name
+    order(name: :asc)
+  end
 
   def bargain?
     price < 10

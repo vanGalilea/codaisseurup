@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Event, type: :model do
   describe "validations" do
-    it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_presence_of(:starts_at) }
-    it { is_expected.to validate_presence_of(:ends_at) }
-    it { is_expected.to validate_presence_of(:description) }
-    it { is_expected.to validate_length_of(:description).is_at_most(500) }
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:starts_at) }
+    it { should validate_presence_of(:ends_at) }
+    it { should validate_presence_of(:description) }
+    it { should validate_length_of(:description).is_at_most(500) }
   end
 
   describe "association with user" do
@@ -15,6 +15,26 @@ RSpec.describe Event, type: :model do
 
   describe "association with theme" do
     it { should have_and_belong_to_many(:themes) }
+  end
+
+  describe ".published" do
+     let!(:event1) { create :event, active: true }
+     let!(:event2) { create :event, active: false }
+     let!(:event3) { create :event, active: true }
+
+     it "returns an array of events which are active" do
+       expect(Event.published).to match_array [event1, event3]
+     end
+   end
+
+  describe ".order_by_name" do
+    let!(:event1) { create :event, name: "Avocado eating contest" }
+    let!(:event2) { create :event, name: "Comics convetion" }
+    let!(:event3) { create :event, name: "Borito workshop" }
+
+    it "returns a sorted array of events by names" do
+      expect(Event.order_by_name).to match_array [event1, event3, event2]
+    end
   end
 
   describe "#bargain?" do
