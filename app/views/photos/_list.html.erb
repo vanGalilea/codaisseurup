@@ -6,7 +6,7 @@
       </div>
       <div class="panel-body">
         <span class="btn btn-default">
-          <%= link_to "Delete", photo_path( photo.id ), class: "btn btn-default", method: :delete, data: { confirm: "Are you sure?" } %>
+          <%= link_to "Delete", photo, class: "btn btn-default", method: :delete, remote: true, data: { confirm: "Are you sure?" } %>
         </span>
       </div>
     </div>
